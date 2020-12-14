@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
+import Home from "./components/home";
+import History from "./components/history";
+import store from "./store";
+import { loadConversions } from "./redux/conversions";
+import { loadCurrencies } from "./redux/currencies";
+
 
 function App() {
+  useEffect(() => {
+    async function fetchData() {
+      await store.dispatch(loadConversions());
+      await store.dispatch(loadCurrencies());
+
+    }
+    fetchData();
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Switch>
+        <Route path="/history" component={History}></Route>
+        <Route path="/home" component={Home}></Route>
+        <Redirect from="/" exact to="/home"></Redirect>
+      </Switch>
     </div>
   );
 }
