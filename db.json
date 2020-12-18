@@ -41,28 +41,120 @@
       "from": "BTC",
       "to": "EUR",
       "value": 15755.058074
+    },
+    {
+      "id": 7,
+      "date": "2020-12-15T16:10:01.370Z",
+      "from": "GBP",
+      "to": "TND",
+      "value": 3.623343
+    },
+    {
+      "id": 8,
+      "date": "2020-12-16T09:03:57.612Z",
+      "from": "TND",
+      "to": "JPY",
+      "value": 38.196144
+    },
+    {
+      "id": 9,
+      "date": "2020-12-16T10:14:18.790Z",
+      "from": "USD",
+      "to": "JPY",
+      "value": 103.354012
+    },
+    {
+      "id": 10,
+      "date": "2020-12-16T10:20:10.650Z",
+      "from": "TND",
+      "to": "DZD",
+      "value": 48.893688
+    },
+    {
+      "id": 11,
+      "date": "2020-12-17T16:13:40.901Z",
+      "from": "EUR",
+      "to": "DZD",
+      "value": 161.436159
+    },
+    {
+      "id": 12,
+      "date": "2020-12-18T10:02:11.535Z",
+      "from": "USD",
+      "to": "CNY",
+      "value": 6.541011
+    },
+    {
+      "id": 13,
+      "date": "2020-12-18T10:06:52.004Z",
+      "from": "USD",
+      "to": "RUB",
+      "value": 73.49905
+    },
+    {
+      "id": 14,
+      "date": "2020-12-18T13:26:37.168Z",
+      "from": "TND",
+      "to": "CNY",
+      "value": 2.431187
     }
+   
   ],
   "currencies": [
     {
       "id": 1,
-      "name": "USD"
+      "name": "USD",
+      "country": "United States"
     },
     {
       "id": 2,
-      "name": "EUR"
+      "name": "EUR",
+      "country": "Europe"
     },
     {
       "id": 3,
-      "name": "TND"
+      "name": "TND",
+      "country": "Tunisia"
     },
     {
       "id": 4,
-      "name": "BTC"
+      "name": "BTC",
+      "country": "Bitcoin"
     },
     {
       "id": 5,
-      "name": "EGP"
+      "name": "EGP",
+      "country": "Egypt"
+    },
+    {
+      "id": 6,
+      "country": "Japan",
+      "name": "JPY"
+    },
+    {
+      "id": 7,
+      "country": "United Kingdom",
+      "name": "GBP"
+    },
+    {
+      "id": 8,
+      "country": "Algeria",
+      "name": "DZD"
+    },
+    {
+      "id": 9,
+      "country": "China",
+      "name": "CNY"
+    },
+    {
+      "id": 10,
+      "country": "Russia",
+      "name": "RUB"
+    },
+    {
+      "id": 11,
+      "country": "Turkey",
+      "name": "TRY"
     }
   ]
 }

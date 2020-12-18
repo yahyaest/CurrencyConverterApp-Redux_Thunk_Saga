@@ -2,17 +2,15 @@ import React, { useEffect } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Home from "./components/home";
 import History from "./components/history";
-import store from "./store";
-import { loadConversions } from "./redux/conversions";
-import { loadCurrencies } from "./redux/currencies";
-
+import store from "./saga/store/index";
+import { getCurrenciesData } from "./saga/reducers/currencies";
+import { getConversionsData } from "./saga/reducers/conversions";
 
 function App() {
   useEffect(() => {
     async function fetchData() {
-      await store.dispatch(loadConversions());
-      await store.dispatch(loadCurrencies());
-
+      await store.dispatch(getCurrenciesData());
+      await store.dispatch(getConversionsData());
     }
     fetchData();
   }, []);
