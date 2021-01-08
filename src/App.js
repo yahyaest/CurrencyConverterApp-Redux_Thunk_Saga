@@ -5,6 +5,7 @@ import History from "./components/history";
 import store from "./store";
 import { loadConversions } from "./redux/conversions";
 import { loadCurrencies } from "./redux/currencies";
+import AdminHome from "./admin/js/adminHome";
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
   return (
     <div className="App">
       <Switch>
+      <Route path="/admin" component={AdminHome}></Route>
         <Route path="/history" component={History}></Route>
         <Route path="/home" component={Home}></Route>
         <Redirect from="/" exact to="/home"></Redirect>

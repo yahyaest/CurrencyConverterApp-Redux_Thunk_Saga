@@ -6,6 +6,8 @@ import store from "./store";
 import { Provider } from "react-redux";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "font-awesome/css/font-awesome.css";
+
 
 ReactDOM.render(
   <React.StrictMode>
