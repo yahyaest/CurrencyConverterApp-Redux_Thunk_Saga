@@ -6,7 +6,7 @@ const slice = createSlice({
   initialState: { tables: [], currentTable: {} },
   reducers: {
     tableAdded: (tables, action) => {
-        tables.tables.push(action.payload);
+      tables.tables.push(action.payload);
     },
     tablesLoaded: (tables, action) => {
       tables.tables = action.payload;
@@ -15,9 +15,7 @@ const slice = createSlice({
       tables.currentTable = action.payload;
     },
     tableRemoved: (tables, action) => {
-      const index = tables.findIndex(
-        (table) => table.id === action.id
-      );
+      const index = tables.findIndex((table) => table.id === action.id);
       tables.splice(index, 1);
     },
   },
@@ -35,15 +33,12 @@ export default slice.reducer;
 
 // Action Creators
 export const loadTables = (data) => async (dispatch) => {
-  await axios
-    .get("http://localhost:5000/conversions/")
-    .then((res) => {
+  
       dispatch({
         type: slice.actions.tablesLoaded.type,
         payload: data,
       });
-    })
-    .catch((err) => console.log(err));
+  
 };
 
 export const loadTable = (id) => async (dispatch) => {
@@ -60,9 +55,9 @@ export const loadTable = (id) => async (dispatch) => {
 };
 
 export const addTable = (data) => async (dispatch) => {
+  console.log("data :", data);
   dispatch({
     type: slice.actions.tableAdded.type,
     payload: data,
   });
-  
 };

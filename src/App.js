@@ -5,7 +5,7 @@ import History from "./components/history";
 import store from "./store";
 import { loadConversions } from "./redux/conversions";
 import { loadCurrencies } from "./redux/currencies";
-import AdminHome from "./admin/js/adminHome";
+import AdminHome from "./components/adminComponents/adminHome";
 
 
 function App() {

@@ -97,8 +97,14 @@
       "from": "TND",
       "to": "CNY",
       "value": 2.431187
+    },
+    {
+      "id": 15,
+      "date": "2021-01-08T23:17:58.473Z",
+      "from": "ETH",
+      "to": "USD",
+      "value": 303.08
     }
-   
   ],
   "currencies": [
     {
