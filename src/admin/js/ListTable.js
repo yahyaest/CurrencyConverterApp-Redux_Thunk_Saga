@@ -7,11 +7,10 @@ function ListTable(props) {
     addTable: PropTypes.func.isRequired,
   };
 
-  const { addTable, data } = props;
-  console.log("props :", props);
+  const { addTable, data,tableAttributes } = props;
 
   useEffect(() => {
-    addTable(data);
+    addTable(data, tableAttributes);
   }, []);
   return <div></div>;
 }

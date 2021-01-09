@@ -9,3 +9,36 @@
   background-color: crimson;
 }
 
+
+.slideBar {
+  position: fixed;
+  width: 5rem;
+  height: 100vh;
+  background-color: silver;
+  /* Animation */
+  transition-timing-function: ease-in;
+  transition: all 0.1s;
+}
+
+.slideBar:hover {
+  width: 15rem;
+}
+
+.slideBar:hover .title {
+  display: block;
+}
+
+.slideBar__list {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  margin-top: 50px;
+  padding: 0;
+}
+
+.slideBar__item {
+  display: flex;
+  height: 7vh;
+  padding-top: 15px;
+}
+

@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 
 const slice = createSlice({
   name: "admin",
@@ -33,31 +32,26 @@ export default slice.reducer;
 
 // Action Creators
 export const loadTables = (data) => async (dispatch) => {
-  
-      dispatch({
-        type: slice.actions.tablesLoaded.type,
-        payload: data,
-      });
-  
+  dispatch({
+    type: slice.actions.tablesLoaded.type,
+    payload: data,
+  });
 };
 
-export const loadTable = (id) => async (dispatch) => {
-  await axios
-    .get(`http://localhost:5000/conversions/${id}/`)
-    .then((res) => {
+export const loadTable = (data) => async (dispatch) => {
+    
       dispatch({
         type: slice.actions.tableLoaded.type,
-        payload: res.data,
-        id,
+        payload: data
+        
       });
-    })
-    .catch((err) => console.log(err));
+   
 };
 
-export const addTable = (data) => async (dispatch) => {
-  console.log("data :", data);
+export const addTable = (data, tableAttributes) => async (dispatch) => {
+  console.log("data :", {data, tableAttributes});
   dispatch({
     type: slice.actions.tableAdded.type,
-    payload: data,
+    payload: { data, tableAttributes },
   });
 };

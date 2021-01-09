@@ -1,13 +1,19 @@
 import React from "react";
+import { connect } from "react-redux";
+import { PropTypes } from "prop-types";
 
-function AdminNavbar() {
+function AdminNavbar(props) {
+  AdminNavbar.prototype = {
+    currentTable: PropTypes.array.isRequired,
+  };
+  const { currentTable } = props;
   return (
     <React.Fragment>
-      <nav >
+      <nav>
         <div className="admin__navbar">
           <i className="fa fa-list-ul"></i>
           <ul>
-            <li>Name</li>
+            <li>{currentTable.data?.name}</li>
           </ul>
         </div>
       </nav>
@@ -15,4 +21,8 @@ function AdminNavbar() {
   );
 }
 
-export default AdminNavbar;
+const mapStateToProps = (state) => ({
+  currentTable: state.admin.currentTable,
+});
+
+export default connect(mapStateToProps, {})(AdminNavbar);
