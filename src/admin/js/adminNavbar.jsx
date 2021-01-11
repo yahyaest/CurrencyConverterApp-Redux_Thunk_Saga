@@ -4,7 +4,7 @@ import { PropTypes } from "prop-types";
 
 function AdminNavbar(props) {
   AdminNavbar.prototype = {
-    currentTable: PropTypes.array.isRequired,
+    currentTable: PropTypes.object.isRequired,
   };
   const { currentTable } = props;
   return (

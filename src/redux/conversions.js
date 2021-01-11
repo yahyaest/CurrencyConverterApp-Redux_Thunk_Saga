@@ -1,13 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import {getConversions} from "../services/currencyConvertor"
+import { getConversions } from "../services/currencyConvertor";
 
 const slice = createSlice({
   name: "conversions",
   initialState: { conversions: [], currentConversion: {} },
   reducers: {
     conversionAdded: (conversions, action) => {
-        conversions.conversions.push(action.payload);
+      conversions.conversions.push(action.payload);
     },
     conversionsLoaded: (conversions, action) => {
       conversions.conversions = action.payload;
@@ -16,10 +16,10 @@ const slice = createSlice({
       conversions.currentConversion = action.payload;
     },
     conversionRemoved: (conversions, action) => {
-      const index = conversions.findIndex(
+      const index = conversions.conversions.findIndex(
         (conversion) => conversion.id === action.id
       );
-      conversions.splice(index, 1);
+      conversions.conversions.splice(index, 1);
     },
   },
 });
@@ -76,6 +76,19 @@ export const addConversion = (from, to, value) => async (dispatch) => {
       dispatch({
         type: slice.actions.conversionAdded.type,
         payload: res.data,
+      });
+    })
+    .catch((err) => console.log(err));
+};
+
+export const deleteConversion = (id) => async (dispatch) => {
+  await axios
+    .delete(`http://localhost:5000/conversions/${id}/`)
+    .then((res) => {
+      dispatch({
+        type: slice.actions.conversionRemoved.type,
+        payload: res.data,
+        id,
       });
     })
     .catch((err) => console.log(err));

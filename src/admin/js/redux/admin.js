@@ -48,10 +48,10 @@ export const loadTable = (data) => async (dispatch) => {
    
 };
 
-export const addTable = (data, tableAttributes) => async (dispatch) => {
-  console.log("data :", {data, tableAttributes});
+export const addTable = (data, tableAttributes,elementDelete) => async (dispatch) => {
+  console.log("data :", {data, tableAttributes,elementDelete});
   dispatch({
     type: slice.actions.tableAdded.type,
-    payload: { data, tableAttributes },
+    payload: { data, tableAttributes,elementDelete },
   });
 };
