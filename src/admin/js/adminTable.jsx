@@ -6,6 +6,7 @@ import { Table } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 
 import store from "./../../store";
+import CreateButton from "./common/createButton";
 
 function AdminTable(props) {
   AdminTable.prototype = {
@@ -14,11 +15,14 @@ function AdminTable(props) {
 
   const { currentTable } = props;
 
-  const getCurrentTableName = () => {
-    if (store.getState()[`${currentTable.data?.name}`]) {
-      return store.getState()[`${currentTable.data?.name}`][
-        `${currentTable.data?.name}`
-      ];
+  const getCurrentTableData = () => {
+    if (store.getState()[`${currentTable?.data?.name}`]) {
+      const keys = currentTable?.data?.reduxData.split(".");
+      let result = store.getState();
+      keys.forEach((key) => {
+        result = result[`${key}`];
+      });
+      return result;
     } else return [];
   };
 
@@ -28,25 +32,34 @@ function AdminTable(props) {
 
   return (
     <div style={{ width: "60%", margin: "0 auto" }}>
-      <Table striped bordered hover variant="dark" size="sm" responsive="md">
+      <CreateButton />
+      <Table
+        striped
+        bordered
+        hover
+        variant="dark"
+        size="sm"
+        responsive="md"
+        className="admin__table"
+      >
         <thead>
           <tr>
-            {currentTable.tableAttributes?.map((column) => (
+            {currentTable?.tableAttributes?.map((column) => (
               <th key={column.title}>{column.title}</th>
             ))}
-            {store.getState()[`${currentTable.data?.name}`] && <th>update</th>}{" "}
-            {store.getState()[`${currentTable.data?.name}`] && <th>delete</th>}
+            {store.getState()[`${currentTable?.data?.name}`] && <th>update</th>}
+            {store.getState()[`${currentTable?.data?.name}`] && <th>delete</th>}
           </tr>
         </thead>
         <tbody>
-          {getCurrentTableName()?.map((element) => (
+          {getCurrentTableData()?.map((element) => (
             <tr key={element.id}>
-              {currentTable.tableAttributes?.map((column) => (
+              {currentTable?.tableAttributes?.map((column) => (
                 <td key={column.title}>{element[`${column.title}`]}</td>
               ))}
               <td>
                 <Link
-                  to={`/admin/${currentTable.data?.name}/${element.id}/`}
+                  to={`/admin/${currentTable?.data?.name}/${element.id}/`}
                   className="btn btn-warning btn-sm"
                 >
                   Update

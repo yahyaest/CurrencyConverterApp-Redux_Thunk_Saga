@@ -5,18 +5,36 @@ import AdminNavbar from "../../admin/js/adminNavbar";
 import AdminDashboard from "./../../admin/js/adminDashboard";
 import AdminTable from "./../../admin/js/adminTable";
 import ListTable from "../../admin/js/ListTable";
-import { deleteCurrency } from "../../redux/currencies";
-import { deleteConversion } from "../../redux/conversions";
+import {
+  addCurrency,
+  updateCurrency,
+  deleteCurrency,
+} from "../../redux/currencies";
+import {
+  addConversion,
+  updateConversion,
+  deleteConversion,
+} from "../../redux/conversions";
 import "../../admin/css/admin.css";
 
 function AdminHome(props) {
   AdminHome.prototype = {
-    tables: PropTypes.array.isRequired,
+    addCurrency: PropTypes.func.isRequired,
+    updateCurrency: PropTypes.func.isRequired,
     deleteCurrency: PropTypes.func.isRequired,
+    addConversion: PropTypes.func.isRequired,
+    updateConversion: PropTypes.func.isRequired,
     deleteConversion: PropTypes.func.isRequired,
   };
 
-  const { tables, deleteCurrency, deleteConversion } = props;
+  const {
+    addCurrency,
+    updateCurrency,
+    deleteCurrency,
+    addConversion,
+    updateConversion,
+    deleteConversion,
+  } = props;
 
   return (
     <React.Fragment>
@@ -25,40 +43,49 @@ function AdminHome(props) {
       <AdminTable />
 
       <ListTable
-        data={{ name: "currencies", url: "http://localhost:5000/currencies" }}
+        data={{
+          name: "currencies",
+          url: "http://localhost:5000/currencies",
+          reduxData: "currencies.currencies",
+        }}
         tableAttributes={[
-          { title: "id", label: "Id" },
-          { title: "name", label: "Name" },
-          { title: "country", label: "Country" },
+          { title: "id", label: "Id", type: "text" },
+          { title: "name", label: "Name", type: "text" },
+          { title: "country", label: "Country", type: "text" },
         ]}
+        elementAdd={addCurrency}
+        elementUpdate={updateCurrency}
         elementDelete={deleteCurrency}
       />
 
       <ListTable
-        data={{ name: "conversions", url: "http://localhost:5000/conversions" }}
+        data={{
+          name: "conversions",
+          url: "http://localhost:5000/conversions",
+          reduxData: "conversions.conversions",
+        }}
         tableAttributes={[
-          { title: "id", label: "Id" },
+          { title: "id", label: "Id", type: "text" },
           { title: "date", label: "Date" },
           { title: "from", label: "From" },
           { title: "to", label: "To" },
           { title: "value", label: "Value" },
         ]}
+        elementAdd={addConversion}
+        elementUpdate={updateConversion}
         elementDelete={deleteConversion}
       />
-
-      <div style={{ width: "60%", margin: "0 auto", textAlign: "center" }}>
-        {tables.map((table) => (
-          <h1 key={table.data.name}>{table.data.name}</h1>
-        ))}
-      </div>
     </React.Fragment>
   );
 }
 
-const mapStateToProps = (state) => ({
-  tables: state.admin.tables,
-});
+const mapStateToProps = (state) => ({});
 
-export default connect(mapStateToProps, { deleteCurrency, deleteConversion })(
-  AdminHome
-);
+export default connect(mapStateToProps, {
+  addCurrency,
+  updateCurrency,
+  deleteCurrency,
+  addConversion,
+  updateConversion,
+  deleteConversion,
+})(AdminHome);

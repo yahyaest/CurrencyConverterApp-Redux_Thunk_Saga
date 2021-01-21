@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { getCurrencies } from "../services/currencyConvertor";
 
 const slice = createSlice({
   name: "currencies",
@@ -14,6 +13,12 @@ const slice = createSlice({
     },
     currencyLoaded: (currencies, action) => {
       currencies.currentcurrency = action.payload;
+    },
+    currencyUpdated: (currencies, action) => {
+      const index = currencies.currencies.findIndex(
+        (currency) => currency.id === action.id
+      );
+      currencies.currencies[index] = action.payload;
     },
     currencyRemoved: (currencies, action) => {
       const index = currencies.currencies.findIndex(
@@ -30,6 +35,7 @@ export const {
   currencyAdded,
   currenciesLoaded,
   currencyLoaded,
+  currencyUpdated,
   currencyRemoved,
 } = slice.actions;
 export default slice.reducer;
@@ -60,19 +66,26 @@ export const loadCurrency = (id) => async (dispatch) => {
     .catch((err) => console.log(err));
 };
 
-export const addCurrency = (name) => async (dispatch) => {
-  let db = await getCurrencies();
-  let length = db.length;
-  let body = {};
-  body.id = length + 1;
-  body.name = name;
-  console.log(body);
+export const addCurrency = (body) => async (dispatch) => {
   await axios
     .post("http://localhost:5000/currencies/", body)
     .then((res) => {
       dispatch({
         type: slice.actions.currencyAdded.type,
         payload: res.data,
+      });
+    })
+    .catch((err) => console.log(err));
+};
+
+export const updateCurrency = (id, component) => async (dispatch) => {
+  await axios
+    .put(`http://localhost:5000/currencies/${id}/`, component)
+    .then((res) => {
+      dispatch({
+        type: slice.actions.currencyUpdated.type,
+        payload: res.data,
+        id,
       });
     })
     .catch((err) => console.log(err));

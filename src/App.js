@@ -6,14 +6,16 @@ import store from "./store";
 import { loadConversions } from "./redux/conversions";
 import { loadCurrencies } from "./redux/currencies";
 import AdminHome from "./components/adminComponents/adminHome";
-
+import {
+  AdminUpdateRoutes,
+  AdminCreateRoutes,
+} from "./admin/routes/adminRoutes";
 
 function App() {
   useEffect(() => {
     async function fetchData() {
       await store.dispatch(loadConversions());
       await store.dispatch(loadCurrencies());
-
     }
     fetchData();
   }, []);
@@ -21,7 +23,8 @@ function App() {
   return (
     <div className="App">
       <Switch>
-      <Route path="/admin" component={AdminHome}></Route>
+        {AdminUpdateRoutes} {AdminCreateRoutes}
+        <Route path="/admin" component={AdminHome}></Route>
         <Route path="/history" component={History}></Route>
         <Route path="/home" component={Home}></Route>
         <Redirect from="/" exact to="/home"></Redirect>

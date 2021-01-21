@@ -1,17 +1,19 @@
+/* Navbar */
 .admin__navbar {
   width: 100%;
   height: 60px;
-  position: "fixed";
-  top: "0";
+  position: fixed;
+  top: 0;
   display: flex;
   flex-wrap: row;
-  padding-top:10px;
+  padding-top: 10px;
   background-color: crimson;
 }
 
-
+/* Slidebar */
 .slideBar {
   position: fixed;
+  top: 60px;
   width: 5rem;
   height: 100vh;
   background-color: silver;
@@ -42,3 +44,7 @@
   padding-top: 15px;
 }
 
+/* Table */
+.admin__table {
+  margin-top: 100px;
+}

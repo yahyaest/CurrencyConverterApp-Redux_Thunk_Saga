@@ -13,7 +13,7 @@ function AdminNavbar(props) {
         <div className="admin__navbar">
           <i className="fa fa-list-ul"></i>
           <ul>
-            <li>{currentTable.data?.name}</li>
+            <li>{currentTable?.data?.name}</li>
           </ul>
         </div>
       </nav>

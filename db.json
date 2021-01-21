@@ -99,11 +99,18 @@
       "value": 2.431187
     },
     {
-      "id": 15,
-      "date": "2021-01-08T23:17:58.473Z",
+      "date": "2021-01-08T23:17:59.473Z",
       "from": "ETH",
       "to": "USD",
-      "value": 303.08
+      "value": "303.085",
+      "id": 15
+    },
+    {
+      "id": 16,
+      "date": "2021-01-20T23:59:13.588Z",
+      "from": "USD",
+      "to": "TRY",
+      "value": "7.025"
     }
   ],
   "currencies": [
@@ -159,8 +166,8 @@
     },
     {
       "id": 11,
-      "country": "Turkey",
-      "name": "TRY"
+      "name": "TRY",
+      "country": "Turkey"
     }
   ]
 }

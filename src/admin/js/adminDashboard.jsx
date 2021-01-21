@@ -1,15 +1,18 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { PropTypes } from "prop-types";
-import { loadTable } from "./redux/admin";
+import { loadTable, createButtonShowed } from "./redux/admin";
 
 function AdminDashboard(props) {
   AdminDashboard.prototype = {
     tables: PropTypes.array.isRequired,
     loadTable: PropTypes.func.isRequired,
+    createButtonShowed: PropTypes.func.isRequired,
   };
 
-  const { tables, loadTable } = props;
+  const { tables, loadTable, createButtonShowed } = props;
+  let history = useHistory();
 
   return (
     <React.Fragment>
@@ -24,6 +27,8 @@ function AdminDashboard(props) {
                     (table) => table.data.name === e.currentTarget.innerText
                   );
                   loadTable(currentTableData);
+                  createButtonShowed();
+                  history.push(`/admin/${currentTableData.data.name}`);
                 }}
               >
                 {table.data.name}
@@ -40,4 +45,6 @@ const mapStateToProps = (state) => ({
   tables: state.admin.tables,
 });
 
-export default connect(mapStateToProps, { loadTable })(AdminDashboard);
+export default connect(mapStateToProps, { loadTable, createButtonShowed })(
+  AdminDashboard
+);

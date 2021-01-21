@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { getConversions } from "../services/currencyConvertor";
 
 const slice = createSlice({
   name: "conversions",
@@ -14,6 +13,12 @@ const slice = createSlice({
     },
     conversionLoaded: (conversions, action) => {
       conversions.currentConversion = action.payload;
+    },
+    conversionUpdated: (conversions, action) => {
+      const index = conversions.conversions.findIndex(
+        (conversion) => conversion.id === action.id
+      );
+      conversions.conversions[index] = action.payload;
     },
     conversionRemoved: (conversions, action) => {
       const index = conversions.conversions.findIndex(
@@ -30,6 +35,7 @@ export const {
   conversionAdded,
   conversionsLoaded,
   conversionLoaded,
+  conversionUpdated,
   conversionRemoved,
 } = slice.actions;
 export default slice.reducer;
@@ -60,22 +66,26 @@ export const loadConversion = (id) => async (dispatch) => {
     .catch((err) => console.log(err));
 };
 
-export const addConversion = (from, to, value) => async (dispatch) => {
-  let db = await getConversions();
-  let length = db.length;
-  let body = {};
-  body.id = length + 1;
-  body.date = new Date(Date.now());
-  body.from = from;
-  body.to = to;
-  body.value = value;
-  console.log(body);
+export const addConversion = (component) => async (dispatch) => {
   await axios
-    .post("http://localhost:5000/conversions/", body)
+    .post("http://localhost:5000/conversions/", component)
     .then((res) => {
       dispatch({
         type: slice.actions.conversionAdded.type,
         payload: res.data,
+      });
+    })
+    .catch((err) => console.log(err));
+};
+
+export const updateConversion = (id, component) => async (dispatch) => {
+  await axios
+    .put(`http://localhost:5000/conversions/${id}/`, component)
+    .then((res) => {
+      dispatch({
+        type: slice.actions.conversionUpdated.type,
+        payload: res.data,
+        id,
       });
     })
     .catch((err) => console.log(err));
