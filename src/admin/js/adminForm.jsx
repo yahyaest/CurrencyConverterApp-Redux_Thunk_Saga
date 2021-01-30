@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { PropTypes } from "prop-types";
-import store from "./../../store";
 import { Form, Button } from "react-bootstrap";
 import Input from "./common/input";
 
 function AdminForm(props) {
   AdminForm.prototype = {
     currentTable: PropTypes.object.isRequired,
+    store: PropTypes.object.isRequired,
   };
-  const { currentTable } = props;
+  const { currentTable, store } = props;
   const currentId = Number(props.match.params.id);
   const [currentComponent, setCurrentComponent] = useState({});
   const [intialComponent, setIntialComponent] = useState({});
@@ -39,9 +39,9 @@ function AdminForm(props) {
   let component = intialComponent;
 
   const getInputValue = (id, attribute) => {
-    if (store.getState()[`${currentTable.data?.name}`]) {
+    if (store?.getState()[`${currentTable.data?.name}`]) {
       const keys = currentTable.data?.reduxData.split(".");
-      let result = store.getState();
+      let result = store?.getState();
       keys.forEach((key) => {
         result = result[`${key}`];
       });
@@ -103,6 +103,7 @@ function AdminForm(props) {
 
 const mapStateToProps = (state) => ({
   currentTable: state.admin.currentTable,
+  store: state.admin.currentTable.data?.store,
 });
 
 export default connect(mapStateToProps, {})(AdminForm);

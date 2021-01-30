@@ -117,57 +117,79 @@
     {
       "id": 1,
       "name": "USD",
-      "country": "United States"
+      "country": "United States",
+      "type": "fiat",
+      "strength": "strong"
     },
     {
       "id": 2,
       "name": "EUR",
-      "country": "Europe"
+      "country": "Europe",
+      "type": "fiat",
+      "strength": "strong"
     },
     {
       "id": 3,
       "name": "TND",
-      "country": "Tunisia"
+      "country": "Tunisia",
+      "type": "fiat",
+      "strength": "weak"
     },
     {
       "id": 4,
       "name": "BTC",
-      "country": "Bitcoin"
+      "country": "Bitcoin",
+      "type": "crypto",
+      "strength": "strong"
     },
     {
       "id": 5,
       "name": "EGP",
-      "country": "Egypt"
+      "country": "Egypt",
+      "type": "fiat",
+      "strength": "weak"
     },
     {
       "id": 6,
       "country": "Japan",
-      "name": "JPY"
+      "name": "JPY",
+      "type": "fiat",
+      "strength": "medium"
     },
     {
       "id": 7,
       "country": "United Kingdom",
-      "name": "GBP"
+      "name": "GBP",
+      "type": "fiat",
+      "strength": "strong"
     },
     {
       "id": 8,
       "country": "Algeria",
-      "name": "DZD"
+      "name": "DZD",
+      "type": "fiat",
+      "strength": "weak"
     },
     {
       "id": 9,
       "country": "China",
-      "name": "CNY"
+      "name": "CNY",
+      "type": "fiat",
+      "strength": "medium"
     },
     {
       "id": 10,
       "country": "Russia",
-      "name": "RUB"
+      "name": "RUB",
+      "type": "fiat",
+      "strength": "weak"
     },
     {
       "id": 11,
       "name": "TRY",
-      "country": "Turkey"
+      "country": "Turkey",
+      "type": "fiat",
+      "strength": "weak"
     }
   ]
 }

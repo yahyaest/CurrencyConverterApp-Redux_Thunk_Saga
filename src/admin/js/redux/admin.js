@@ -5,7 +5,7 @@ const slice = createSlice({
   initialState: {
     tables: [],
     currentTable: {},
-    tableStates: { createButton: false, showPagination: false },
+    tableStates: { createButton: false, filterSelector: false },
   },
   reducers: {
     tableAdded: (tables, action) => {
@@ -27,12 +27,16 @@ const slice = createSlice({
     hideCreateButton: (tables, action) => {
       tables.tableStates.createButton = action.payload;
     },
+    showFilterSelector: (tables, action) => {
+      tables.tableStates.filterSelector = action.payload;
+    },
+    hideFilterSelector: (tables, action) => {
+      tables.tableStates.filterSelector = action.payload;
+    },
   },
 });
 
 console.log(slice);
-
-
 
 export const {
   tableAdded,
@@ -41,6 +45,8 @@ export const {
   tableRemoved,
   showCreateButton,
   hideCreateButton,
+  showFilterSelector,
+  hideFilterSelector,
 } = slice.actions;
 export default slice.reducer;
 
@@ -62,6 +68,8 @@ export const loadTable = (data) => async (dispatch) => {
 export const addTable = (
   data,
   tableAttributes,
+  search,
+  filters,
   elementAdd,
   elementUpdate,
   elementDelete
@@ -71,6 +79,8 @@ export const addTable = (
     payload: {
       data,
       tableAttributes,
+      search,
+      filters,
       elementAdd,
       elementUpdate,
       elementDelete,
@@ -79,8 +89,29 @@ export const addTable = (
 };
 
 export const createButtonShowed = () => async (dispatch) => {
-         dispatch({
-           type: slice.actions.showCreateButton.type,
-           payload: true,
-         });
-       };
+  dispatch({
+    type: slice.actions.showCreateButton.type,
+    payload: true,
+  });
+};
+
+export const createButtonHided = () => async (dispatch) => {
+  dispatch({
+    type: slice.actions.hideCreateButton.type,
+    payload: false,
+  });
+};
+
+export const filterSelectorShowed = () => async (dispatch) => {
+  dispatch({
+    type: slice.actions.showFilterSelector.type,
+    payload: true,
+  });
+};
+
+export const filterSelectorHided = () => async (dispatch) => {
+  dispatch({
+    type: slice.actions.hideFilterSelector.type,
+    payload: false,
+  });
+};

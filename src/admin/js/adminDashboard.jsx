@@ -2,7 +2,10 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { PropTypes } from "prop-types";
-import { loadTable, createButtonShowed } from "./redux/admin";
+import {
+  loadTable,
+  createButtonShowed,
+} from "./redux/admin";
 
 function AdminDashboard(props) {
   AdminDashboard.prototype = {
@@ -45,6 +48,7 @@ const mapStateToProps = (state) => ({
   tables: state.admin.tables,
 });
 
-export default connect(mapStateToProps, { loadTable, createButtonShowed })(
-  AdminDashboard
-);
+export default connect(mapStateToProps, {
+  loadTable,
+  createButtonShowed,
+})(AdminDashboard);

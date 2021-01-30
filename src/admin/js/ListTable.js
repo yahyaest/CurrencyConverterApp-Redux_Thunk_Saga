@@ -8,15 +8,36 @@ function ListTable(props) {
     addTable: PropTypes.func.isRequired,
   };
 
-  const { tables, addTable, data, tableAttributes,elementAdd,elementUpdate, elementDelete } = props;
+  const {
+    tables,
+    addTable,
+    data,
+    tableAttributes,
+    search,
+    filters,
+    elementAdd,
+    elementUpdate,
+    elementDelete,
+  } = props;
 
   const tableExist = (tableName) => {
-    const tableIndex = tables.findIndex((table) => table.data.name === tableName);
+    const tableIndex = tables.findIndex(
+      (table) => table.data.name === tableName
+    );
     return tableIndex;
   };
 
   useEffect(() => {
-  if (tableExist(data.name) === -1) addTable(data, tableAttributes,elementAdd,elementUpdate, elementDelete);
+    if (tableExist(data.name) === -1)
+      addTable(
+        data,
+        tableAttributes,
+        search,
+        filters,
+        elementAdd,
+        elementUpdate,
+        elementDelete
+      );
   }, []);
   return <div></div>;
 }

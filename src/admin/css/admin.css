@@ -14,7 +14,7 @@
 .slideBar {
   position: fixed;
   top: 60px;
-  width: 5rem;
+  width: 15rem;
   height: 100vh;
   background-color: silver;
   /* Animation */
@@ -42,9 +42,39 @@
   display: flex;
   height: 7vh;
   padding-top: 15px;
+  cursor: pointer;
+}
+
+.slideBar__item:hover {
+  background-color: gray;
+}
+
+.slideBar__item p {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
 }
 
 /* Table */
 .admin__table {
   margin-top: 100px;
+}
+
+.menu__bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 60%;
+  margin: 0 auto;
+  margin-top: 100px;
+  margin-bottom: 20px;
+}
+
+.menu__bar * {
+  padding: 0 5px;
+}
+
+.pagination {
+  margin-top: 50px;
+  justify-content: center;
 }

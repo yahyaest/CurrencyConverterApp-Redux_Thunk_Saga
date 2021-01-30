@@ -1,9 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { PropTypes } from "prop-types";
-import AdminNavbar from "../../admin/js/adminNavbar";
-import AdminDashboard from "./../../admin/js/adminDashboard";
-import AdminTable from "./../../admin/js/adminTable";
+import store from "../../store";
+import AdminPage from "../../admin/js/adminPage";
 import ListTable from "../../admin/js/ListTable";
 import {
   addCurrency,
@@ -38,21 +37,24 @@ function AdminHome(props) {
 
   return (
     <React.Fragment>
-      <AdminNavbar />
-      <AdminDashboard />
-      <AdminTable />
+      <AdminPage />
 
       <ListTable
         data={{
           name: "currencies",
           url: "http://localhost:5000/currencies",
           reduxData: "currencies.currencies",
+          store: store,
         }}
         tableAttributes={[
           { title: "id", label: "Id", type: "text" },
           { title: "name", label: "Name", type: "text" },
           { title: "country", label: "Country", type: "text" },
-        ]}
+          { title: "type", label: "Type", type: "text" },
+          { title: "strength", label: "Strength", type: "text" },
+        ]} // Don't forget to implement SELECTOR !!!
+        search="country"
+        filters={["type", "strength"]}
         elementAdd={addCurrency}
         elementUpdate={updateCurrency}
         elementDelete={deleteCurrency}
@@ -63,6 +65,7 @@ function AdminHome(props) {
           name: "conversions",
           url: "http://localhost:5000/conversions",
           reduxData: "conversions.conversions",
+          store: store,
         }}
         tableAttributes={[
           { title: "id", label: "Id", type: "text" },
