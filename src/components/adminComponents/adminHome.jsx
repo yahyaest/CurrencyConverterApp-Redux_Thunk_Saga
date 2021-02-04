@@ -47,11 +47,16 @@ function AdminHome(props) {
           store: store,
         }}
         tableAttributes={[
-          { title: "id", label: "Id", type: "text" },
-          { title: "name", label: "Name", type: "text" },
-          { title: "country", label: "Country", type: "text" },
-          { title: "type", label: "Type", type: "text" },
-          { title: "strength", label: "Strength", type: "text" },
+          { title: "id", label: "Id", type: "text", format: "input" },
+          { title: "name", label: "Name", type: "text", format: "input" },
+          { title: "country", label: "Country", type: "text", format: "input" },
+          { title: "type", label: "Type", type: "text", format: "select" },
+          {
+            title: "strength",
+            label: "Strength",
+            type: "text",
+            format: "select",
+          },
         ]} // Don't forget to implement SELECTOR !!!
         search="country"
         filters={["type", "strength"]}
@@ -68,11 +73,16 @@ function AdminHome(props) {
           store: store,
         }}
         tableAttributes={[
-          { title: "id", label: "Id", type: "text" },
-          { title: "date", label: "Date" },
-          { title: "from", label: "From" },
-          { title: "to", label: "To" },
-          { title: "value", label: "Value" },
+          { title: "id", label: "Id", type: "text", format: "input" },
+          {
+            title: "date",
+            label: "Date",
+            type: "datetime-local",
+            format: "input",
+          },
+          { title: "from", label: "From", type: "text", format: "input" },
+          { title: "to", label: "To", type: "text", format: "input" },
+          { title: "value", label: "Value", type: "text", format: "input" },
         ]}
         elementAdd={addConversion}
         elementUpdate={updateConversion}

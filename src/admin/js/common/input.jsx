@@ -2,14 +2,7 @@ import React from "react";
 import { Form } from "react-bootstrap";
 
 function Input(props) {
-  const {
-    controlId,
-    label,
-    name,
-    type,
-    value,
-    handleChange,
-  } = props;
+  const { controlId, label, name, type, value, handleChange } = props;
 
   return (
     <div>

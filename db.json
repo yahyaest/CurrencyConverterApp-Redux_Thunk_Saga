@@ -65,7 +65,7 @@
     },
     {
       "id": 10,
-      "date": "2020-12-16T10:20:10.650Z",
+      "date": "2021-02-04T21:38",
       "from": "TND",
       "to": "DZD",
       "value": 48.893688
@@ -107,7 +107,7 @@
     },
     {
       "id": 16,
-      "date": "2021-01-20T23:59:13.588Z",
+      "date": "2021-02-04T20:10",
       "from": "USD",
       "to": "TRY",
       "value": "7.025"
@@ -151,8 +151,8 @@
     },
     {
       "id": 6,
-      "country": "Japan",
       "name": "JPY",
+      "country": "Japan",
       "type": "fiat",
       "strength": "medium"
     },
@@ -190,6 +190,13 @@
       "country": "Turkey",
       "type": "fiat",
       "strength": "weak"
+    },
+    {
+      "id": "12",
+      "name": "ETH",
+      "country": "Ethereum",
+      "type": "crypto",
+      "strength": "medium"
     }
   ]
 }

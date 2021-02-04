@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { PropTypes } from "prop-types";
 import { Form, Button } from "react-bootstrap";
 import Input from "./common/input";
+import Select from "./common/select";
 
 function AdminForm(props) {
   AdminForm.prototype = {
@@ -51,6 +52,25 @@ function AdminForm(props) {
     } else return [];
   };
 
+  const getSelectValue = (currentOption) => {
+    let options = [];
+    let result = [];
+    if (store?.getState()[`${currentTable?.data?.name}`]) {
+      const keys = currentTable?.data?.reduxData.split(".");
+      result = store?.getState();
+      keys.forEach((key) => {
+        result = result[`${key}`];
+      });
+    }
+
+    result.map((element) => {
+      let index = options.indexOf(element[`${currentOption}`]);
+      if (index === -1) options.push(element[`${currentOption}`]);
+    });
+
+    return options;
+  };
+
   const handleChange = (e, attribute) => {
     if (e.target.name === attribute) {
       component[`${attribute}`] = e.currentTarget.value;
@@ -78,21 +98,32 @@ function AdminForm(props) {
       onSubmit={(e) => handleSubmit(e)}
       style={{ width: "60%", margin: "0 auto" }}
     >
-      {currentTable?.tableAttributes?.map((attribute) => (
-        <Input
-          key={attribute.label}
-          controlId={`formBasic${attribute.label}`}
-          label={attribute.label}
-          name={attribute.title}
-          type={attribute.type}
-          value={
-            props.match.url !== `/admin/${currentTable.data?.name}/new`
-              ? getInputValue(currentId, attribute.title)
-              : ""
-          }
-          handleChange={(e) => handleChange(e, attribute.title)}
-        />
-      ))}
+      {currentTable?.tableAttributes?.map((attribute) =>
+        attribute.format === "input" ? (
+          <Input
+            key={attribute.label}
+            controlId={`formBasic${attribute.label}`}
+            label={attribute.label}
+            name={attribute.title}
+            type={attribute.type}
+            value={
+              props.match.url !== `/admin/${currentTable.data?.name}/new`
+                ? getInputValue(currentId, attribute.title)
+                : ""
+            }
+            handleChange={(e) => handleChange(e, attribute.title)}
+          />
+        ) : (
+          <Select
+            key={attribute.label}
+            controlId={`formBasic${attribute.label}`}
+            label={attribute.label}
+            name={attribute.title}
+            options={getSelectValue(attribute.title)}
+            handleChange={(e) => handleChange(e, attribute.title)}
+          />
+        )
+      )}
 
       <Button variant="primary" type="submit">
         Submit
